@@ -14,17 +14,18 @@
 
   <main>
     <section class="organization-and-categories">
-      <h2>Lighthouse Labs</h2>
+      <!-- <h2>Lighthouse Labs</h2> -->
+      <h2><%= organizations %></h2>
+
       <ul>
-        <li><a href="">Social</a></li>
-        <li><a href="">Work</a></li>
-        <li><a href="">Education</a></li>
-        <li><a href="">Entertainment</a></li>
+        <% categories.forEach(category => { %>
+            <li><a href=""><%= category.name %></a></li>
+        <% }) %>
       </ul>
     </section>
 
     <section class="allAccounts">
-      <% accounts.forEach(account => { %>
+        <% accounts.forEach(account => { %>
         <div class="account">
           <h3><%= account.website %></h3>
           <p><%= account.username %></p>
@@ -33,6 +34,9 @@
           <button>edit</button>
         </div>
       <% }) %>
+
+
+
     </section>
 
     <!-- <section class="allAccounts">

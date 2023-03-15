@@ -57,15 +57,42 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/allAccounts', (req, res) => {
-  pool.query('SELECT * FROM accounts', (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send('Internal Server Error');
-    } else {
-      res.render('allAccounts', { accounts: result.rows });
-    }
-  });
+
+
+// app.get('/allAccounts', (req, res) => {
+//   let organizations, accounts;
+//   pool.query('SELECT * FROM organizations')
+//     .then((result) => {
+//       organizations = result.rows[0].name
+//       pool.query('SELECT * FROM accounts')
+//         .then((result) => {
+//           let accounts = result.rows
+//           res.render('allAccounts', { organizations: organizations, accounts: accounts })
+//         })
+//         .catch((err) => {
+//           console.log(err.message);
+//           res.send('server error')
+//         });
+//     })
+//     .catch((err) => {
+//       console.log(err.message);
+//       res.send('server error')
+//     });
+// });
+
+app.get('/allAccounts', async (req, res) => {
+  try {
+    const organizationsResult = await pool.query('SELECT * FROM organizations');
+    const organizations = organizationsResult.rows[0].name;
+    const categoriesResult = await pool.query('SELECT * FROM categories');
+    const categories = categoriesResult.rows;
+    const accountsResult = await pool.query('SELECT * FROM accounts');
+    const accounts = accountsResult.rows;
+    res.render('allAccounts', { organizations: organizations, categories: categories, accounts: accounts });
+  } catch (err) {
+    console.log(err.message);
+    res.send('server error');
+  }
 });
 
 app.listen(PORT, () => {
