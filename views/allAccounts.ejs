@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/allAccounts.css" />
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <main>
+    <section class="organization-and-categories">
+      <h2>Lighthouse Labs</h2>
+      <ul>
+        <li><a href="">Social</a></li>
+        <li><a href="">Work</a></li>
+        <li><a href="">Education</a></li>
+        <li><a href="">Entertainment</a></li>
+      </ul>
+    </section>
+
+    <section class="allAccounts">
+      <% accounts.forEach(account => { %>
+        <div class="account">
+          <h3><%= account.website %></h3>
+          <p><%= account.username %></p>
+          <p><%= account.password %></p>
+          <button>copy</button>
+          <button>edit</button>
+        </div>
+      <% }) %>
+    </section>
+
+    <!-- <section class="allAccounts">
+      <div class="account">
+        <h3>website1</h3>
+        <p>username</p>
+        <p>password</p>
+        <button>copy</button>
+        <button>edit</button>
+      </div>
+
+      <div class="account">
+        <h3>website2</h3>
+        <p>username</p>
+        <p>password</p>
+        <button>copy</button>
+        <button>edit</button>
+      </div>
+
+      <div class="account">
+        <h3>website3</h3>
+        <p>username</p>
+        <p>password</p>
+        <button>copy</button>
+        <button>edit</button>
+      </div>
+
+    </section> -->
+
+  </main>
+
+</body>
+</html>

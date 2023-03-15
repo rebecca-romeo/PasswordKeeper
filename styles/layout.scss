@@ -1,6 +1,18 @@
 // See: https://sass-lang.com/
 
 body,
-html {
+html,
+h1 {
   margin: 0;
+  padding: 0;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+

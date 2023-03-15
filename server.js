@@ -5,9 +5,18 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  user: 'labber',
+  password: 'labber',
+  host: 'localhost',
+  database: 'midterm'
+});
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
 
 app.set('view engine', 'ejs');
 
@@ -46,6 +55,17 @@ app.use('/users', usersRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.get('/allAccounts', (req, res) => {
+  pool.query('SELECT * FROM accounts', (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.render('allAccounts', { accounts: result.rows });
+    }
+  });
 });
 
 app.listen(PORT, () => {
