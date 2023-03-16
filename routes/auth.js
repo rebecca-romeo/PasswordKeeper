@@ -25,7 +25,7 @@ router.post('/login', (req, res) => {
         if (err) throw err;
 
         if (isMatch) {
-          req.session.user = user.id;
+          req.session.user = user.email;
           res.status('200').send();
         } else {
           res.status('401').send();
@@ -38,8 +38,8 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/login');
+  req.session.user = null;
+  res.status('200').send();
 });
 
 module.exports = router;
