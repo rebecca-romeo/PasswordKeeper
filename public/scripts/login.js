@@ -6,11 +6,11 @@ $(() => {
     const password = $('#password').val();
 
     $.ajax({
-      url: '/login',
+      url: '/auth/login',
       method: 'POST',
       data: { email, password },
       success: () => {
-        window.location.href = '/dashboard';
+        window.location.href = '/allAccounts';
       }
     }); // ajax
   }); // click event
