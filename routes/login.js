@@ -7,16 +7,14 @@ const userLogin = require('../db/queries/login');
 
 module.exports = router;
 
-router.get('/login', (req, res) => {
+router.get('/', (req, res) => {
   res.render('login')
 })
 
 router.post('/login', (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  userLogin.query('SELECT * FROM users WHERE username = $1', [username], (err, results) => {
-    if (err) throw err;
-
+  userLogin.query('SELECT * FROM users WHERE email = ari@gmail.com', [email], (err, results) => {
     if (results.length > 0) {
       bcrypt.compare(password, results[0].password, (err, isMatch) => {
         if (err) throw err;
