@@ -40,6 +40,7 @@ app.use(express.static('public'));
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
+const allAccounts = require('./routes/allAccounts');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -47,6 +48,7 @@ const usersRoutes = require('./routes/users');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
+app.use('/allAccounts', allAccounts);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -80,20 +82,20 @@ app.get('/', (req, res) => {
 //     });
 // });
 
-app.get('/allAccounts', async (req, res) => {
-  try {
-    const organizationsResult = await pool.query('SELECT * FROM organizations');
-    const organizations = organizationsResult.rows[0].name;
-    const categoriesResult = await pool.query('SELECT * FROM categories');
-    const categories = categoriesResult.rows;
-    const accountsResult = await pool.query('SELECT * FROM accounts');
-    const accounts = accountsResult.rows;
-    res.render('allAccounts', { organizations: organizations, categories: categories, accounts: accounts });
-  } catch (err) {
-    console.log(err.message);
-    res.send('server error');
-  }
-});
+// app.get('/allAccounts', async (req, res) => {
+//   try {
+//     const organizationsResult = await pool.query('SELECT * FROM organizations');
+//     const organizations = organizationsResult.rows[0].name;
+//     const categoriesResult = await pool.query('SELECT * FROM categories');
+//     const categories = categoriesResult.rows;
+//     const accountsResult = await pool.query('SELECT * FROM accounts');
+//     const accounts = accountsResult.rows;
+//     res.render('allAccounts', { organizations: organizations, categories: categories, accounts: accounts });
+//   } catch (err) {
+//     console.log(err.message);
+//     res.send('server error');
+//   }
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
