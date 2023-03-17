@@ -18,7 +18,8 @@ body {
     padding-top: 20%;
     padding-bottom: 1rem;
   }
-  .homepage-login-btn {
+  .homepage-login-btn,
+  .homepage-register-btn {
     border: none;
     background-color: white;
     color: black;
@@ -27,10 +28,12 @@ body {
     padding: 0.4rem 1rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
+    margin: 0.5rem;
   }
 }
 
-.homepage-login-btn:hover {
+.homepage-login-btn:hover,
+.homepage-register-btn:hover {
   border: 2px solid white;
   background-color: black;
   color: white;
