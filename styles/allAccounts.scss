@@ -107,3 +107,30 @@
 }
 
 
+@media (max-width: 1250px) {
+  .all-accounts .all-accounts-container .account {
+    width: 25%;
+  }
+
+  .main-display-all-accounts .all-accounts .account {
+    padding: 1rem;
+  }
+
+  .main-display-all-accounts {
+    font-size: 1rem;
+    .organization-and-categories{
+      padding: 0rem;
+      .all-or-add-container button {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .main-display-all-accounts .organization-and-categories {
+    width: 30%;
+  }
+
+}
+
