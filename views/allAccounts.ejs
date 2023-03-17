@@ -10,6 +10,9 @@
   <script src="/scripts/updateAccount.js"></script>
 
   <script src="https://kit.fontawesome.com/23395927b9.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/allAccounts.css" />
 </head>
@@ -18,56 +21,52 @@
 
   <%- include('partials/header') %>
 
-    <main>
+    <main class="main-display-all-accounts">
       <section class="organization-and-categories">
-        <!-- <h2>Lighthouse Labs</h2> -->
-        <h2>
+        <h2 class="organization-name">
           <%= organizations %>
         </h2>
 
-        <div class="btn-flex-container">
-
+        <div class="all-or-add-container">
           <button id="all-accounts-btn">View All Accounts</button>
           <button id="add-new-account-btn">Add New Account</button>
         </div>
       </section>
 
       <section class="all-accounts">
-        <h2>Available Accounts</h2>
+        <h2 class="h2-available-accounts">Available Accounts</h2>
         <div class="all-accounts-container">
 
           <% accounts.forEach(account=> { %>
             <div class="account">
               <div class="website-value">
-                <h3 class="website">
-                  <%= account.website %>
-                </h3>
+                <p class="bold">Website</p>
+                <p class="lighter-font"> <%= account.website %> </p>
               </div>
               <div class="username-value">
-                <p>
-                  <%= account.username %>
-                </p>
+                <p class="bold">Username</p>
+                <p class="lighter-font"> <%= account.username %> </p>
               </div>
               <div class="password-value">
-                <p>
-                  <%= account.password %>
-                </p>
+                <p class="bold"> Password</p>
+                <p class="lighter-font"> <%= account.password %> </p>
               </div>
 
               <div class="edit-form" style="display:none">
+                <label for="website">Website:</label>
                 <input type="text" name="website" value="<%= account.website %>">
+                <label for="username">Username:</label>
                 <input type="text" name="username" value="<%= account.username %>">
-                <input type="text" name="password" value="<%= account.password %>">
+                <label for="password">Password:</label>
+                <input type="text" name="password" class="last" value="<%= account.password %>">
               </div>
 
-              <div class="icon-btn-container">
-
-                <button class="copy-btn" data-password="<%= account.password %>"><i
+              <div class="account-icon-btn-container">
+                <button class="copy-btn account-icon-button" title="copy password" data-password="<%= account.password %>"><i
                     class="fa-solid fa-copy"></i></button>
-
-                <button class="edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="save-btn" style="display:none"><i class="fa-solid fa-check"></i></button>
-                <button class="cancel-btn" style="display:none"><i class="fa-solid fa-times"></i></button>
+                <button class="edit-btn account-icon-button" title="edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="save-btn account-icon-button" title="save changes" style="display:none"><i class="fa-solid fa-check"></i></button>
+                <button class="cancel-btn account-icon-button" title="cancel changes" style="display:none"><i class="fa-solid fa-times"></i></button>
               </div>
 
 
@@ -91,6 +90,7 @@
           });
 
           $('.copy-btn').on('click', function () {
+            alert('password copied')
             const password = $(this).data('password');
             const tempInput = $('<input>');
             $('body').append(tempInput);
