@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Dashboard</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="/scripts/updateAccount.js"></script>
 
@@ -41,11 +41,15 @@
             <div class="account">
               <div class="website-value">
                 <p class="bold">Website</p>
-                <p class="lighter-font"> <%= account.website %> </p>
+                <p class="lighter-font">
+                  <%= account.website %>
+                </p>
               </div>
               <div class="username-value">
                 <p class="bold">Username</p>
-                <p class="lighter-font"> <%= account.username %> </p>
+                <p class="lighter-font">
+                  <%= account.username %>
+                </p>
               </div>
               <div class="password-value">
                 <p class="bold"> Password</p>
@@ -62,11 +66,14 @@
               </div>
 
               <div class="account-icon-btn-container">
-                <button class="copy-btn account-icon-button" title="copy password" data-password="<%= account.password %>"><i
-                    class="fa-solid fa-copy"></i></button>
-                <button class="edit-btn account-icon-button" title="edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="save-btn account-icon-button" title="save changes" style="display:none"><i class="fa-solid fa-check"></i></button>
-                <button class="cancel-btn account-icon-button" title="cancel changes" style="display:none"><i class="fa-solid fa-times"></i></button>
+                <button class="copy-btn account-icon-button" title="copy password"
+                  data-password="<%= account.password %>"><i class="fa-solid fa-copy"></i></button>
+                <button class="edit-btn account-icon-button" title="edit"><i
+                    class="fa-solid fa-pen-to-square"></i></button>
+                <button class="save-btn account-icon-button" title="save changes" style="display:none"><i
+                    class="fa-solid fa-check"></i></button>
+                <button class="cancel-btn account-icon-button" title="cancel changes" style="display:none"><i
+                    class="fa-solid fa-times"></i></button>
               </div>
 
 
