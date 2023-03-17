@@ -18,7 +18,8 @@ body {
     padding-top: 20%;
     padding-bottom: 1rem;
   }
-  .homepage-login-btn {
+  .homepage-login-btn,
+  .homepage-register-btn {
     border: none;
     background-color: white;
     color: black;
@@ -27,13 +28,62 @@ body {
     padding: 0.4rem 1rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
+    margin: 0.5rem;
   }
 }
 
-.homepage-login-btn:hover {
+.homepage-login-btn:hover,
+.homepage-register-btn:hover {
   border: 2px solid white;
   background-color: black;
   color: white;
 }
 
+
+@media (max-width: 600px) {
+  .homepage {
+    background-position: 0rem 28rem;
+    h1 {
+      font-size: 4rem;
+      line-height: 4rem;
+      padding-top: 40%;
+    }
+    .homepage-login-btn,
+    .homepage-register-btn {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .homepage {
+    padding-left: 3rem;
+    h1 {
+      font-size: 3.5rem;
+      line-height: 3.5rem;
+      padding-top: 55%;
+    }
+    .homepage-login-btn,
+    .homepage-register-btn {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .homepage {
+    background-position: 0rem 28rem;
+    padding-left: 2rem;
+    h1 {
+      font-size: 3rem;
+      line-height: 3rem;
+      padding-top: 55%;
+    }
+    .homepage-login-btn,
+    .homepage-register-btn {
+      font-size: 1rem;
+      margin: 0.3rem;
+    }
+  }
+}
 
