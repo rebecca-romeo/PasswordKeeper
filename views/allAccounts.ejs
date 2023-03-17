@@ -41,13 +41,13 @@
             <div class="account">
               <div class="website-value">
                 <p class="bold">Website</p>
-                <p class="lighter-font">
+                <p class="account-website lighter-font">
                   <%= account.website %>
                 </p>
               </div>
               <div class="username-value">
                 <p class="bold">Username</p>
-                <p class="lighter-font">
+                <p class="account-username lighter-font">
                   <%= account.username %>
                 </p>
               </div>
@@ -97,7 +97,7 @@
           });
 
           $('.copy-btn').on('click', function () {
-            alert('password copied')
+            alert('Password copied to clipboard')
             const password = $(this).data('password');
             const tempInput = $('<input>');
             $('body').append(tempInput);
@@ -116,22 +116,24 @@
             account.find('.cancel-btn').show();
           });
 
+
           $('.save-btn').on('click', function () {
             const account = $(this).closest('.account');
             const form = account.find('.edit-form');
             const website = form.find('input[name="website"]').val();
             const username = form.find('input[name="username"]').val();
             const password = form.find('input[name="password"]').val();
-            account.find('.website-value h3').text(website);
-            account.find('.username-value p').text(username);
-            account.find('.password-value p').text(password);
+            account.find('.account-website').text(website);
+            account.find('.account-username').text(username);
+            account.find('.account-password').text(password);
             account.find('.website-value').show();
             account.find('.username-value').show();
             account.find('.password-value').show();
             form.hide();
-            account.find('.save-btn').hide();
+            $(this).hide();
             account.find('.cancel-btn').hide();
           });
+
 
           $('.cancel-btn').on('click', function () {
             const account = $(this).closest('.account');
