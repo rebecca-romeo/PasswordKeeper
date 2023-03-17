@@ -48,6 +48,8 @@ const usersRoutes = require('./routes/users');
 const userAuth = require('./routes/auth');
 const allAccounts = require('./routes/allAccounts');
 const updateAccount = require('./routes/updateAccount');
+const newPassword = require('./routes/addNewAccount');
+const addNewAccount = require('./routes/addNewAccount');
 
 
 
@@ -60,6 +62,9 @@ app.use('/users', usersRoutes);
 app.use('/auth', userAuth);
 app.use('/allAccounts', allAccounts);
 app.use('./updateAccount', updateAccount);
+app.use('./newPassword', newPassword);
+app.use('/addNewAccount', addNewAccount);
+
 
 // Note: mount other resources here, using the same pattern above
 
