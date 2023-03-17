@@ -1,100 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/scripts/updateAccount.js"></script>
+
   <script src="https://kit.fontawesome.com/23395927b9.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/allAccounts.css" />
 </head>
+
 <body>
 
   <%- include('partials/header') %>
 
-  <main>
-    <section class="organization-and-categories">
-      <!-- <h2>Lighthouse Labs</h2> -->
-      <h2><%= organizations %></h2>
+    <main>
+      <section class="organization-and-categories">
+        <!-- <h2>Lighthouse Labs</h2> -->
+        <h2>
+          <%= organizations %>
+        </h2>
 
-      <div class="btn-flex-container">
+        <div class="btn-flex-container">
 
-        <button id="all-accounts-btn">All accounts</button>
-        <button id="add-new-account-btn">Add New Account</button>
-      </div>
-    </section>
-
-    <section class="all-accounts">
-      <h2>Available Accounts</h2>
-      <div class="all-accounts-container">
-
-        <% accounts.forEach(account => { %>
-        <div class="account">
-          <h3 class="website"><%= account.website %></h3>
-          <p><%= account.username %></p>
-          <p><%= account.password %></p>
-          <div class="icon-btn-container">
-            <button class="copy-btn" data-password="<%= account.password %>"><i class="fa-solid fa-copy"></i></button>
-            <button><i class="fa-solid fa-pen-to-square"></i></button>
-          </div>
+          <button id="all-accounts-btn">View All Accounts</button>
+          <button id="add-new-account-btn">Add New Account</button>
         </div>
-      <% }) %>
-      </div>
+      </section>
+
+      <section class="all-accounts">
+        <h2>Available Accounts</h2>
+        <div class="all-accounts-container">
+
+          <% accounts.forEach(account=> { %>
+            <div class="account">
+              <div class="website-value">
+                <h3 class="website">
+                  <%= account.website %>
+                </h3>
+              </div>
+              <div class="username-value">
+                <p>
+                  <%= account.username %>
+                </p>
+              </div>
+              <div class="password-value">
+                <p>
+                  <%= account.password %>
+                </p>
+              </div>
+
+              <div class="edit-form" style="display:none">
+                <input type="text" name="website" value="<%= account.website %>">
+                <input type="text" name="username" value="<%= account.username %>">
+                <input type="text" name="password" value="<%= account.password %>">
+              </div>
+
+              <div class="icon-btn-container">
+
+                <button class="copy-btn" data-password="<%= account.password %>"><i
+                    class="fa-solid fa-copy"></i></button>
+
+                <button class="edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="save-btn" style="display:none"><i class="fa-solid fa-check"></i></button>
+                <button class="cancel-btn" style="display:none"><i class="fa-solid fa-times"></i></button>
+              </div>
 
 
 
-    </section>
+            </div>
+            <% }) %>
+        </div>
 
-    <!-- <section class="allAccounts">
-      <div class="account">
-        <h3>website1</h3>
-        <p>username</p>
-        <p>password</p>
-        <button>copy</button>
-        <button>edit</button>
-      </div>
 
-      <div class="account">
-        <h3>website2</h3>
-        <p>username</p>
-        <p>password</p>
-        <button>copy</button>
-        <button>edit</button>
-      </div>
 
-      <div class="account">
-        <h3>website3</h3>
-        <p>username</p>
-        <p>password</p>
-        <button>copy</button>
-        <button>edit</button>
-      </div>
+      </section>
 
-    </section> -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        $(() => {
+          $('#all-accounts-btn').on('click', () => {
+            window.location.href = '/allAccounts';
+          });
+          $('#add-new-account-btn').on('click', () => {
+            window.location.href = '/addNewAccount';
+          });
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-      $(() => {
-        $('#all-accounts-btn').on('click', () => {
-          window.location.href = '/allAccounts';
+          $('.copy-btn').on('click', function () {
+            const password = $(this).data('password');
+            const tempInput = $('<input>');
+            $('body').append(tempInput);
+            tempInput.val(password).select();
+            document.execCommand('copy');
+            tempInput.remove();
+          });
+
+          $('.edit-btn').on('click', function () {
+            const account = $(this).closest('.account');
+            account.find('.website-value').hide();
+            account.find('.username-value').hide();
+            account.find('.password-value').hide();
+            account.find('.edit-form').show();
+            account.find('.save-btn').show();
+            account.find('.cancel-btn').show();
+          });
+
+          $('.save-btn').on('click', function () {
+            const account = $(this).closest('.account');
+            const form = account.find('.edit-form');
+            const website = form.find('input[name="website"]').val();
+            const username = form.find('input[name="username"]').val();
+            const password = form.find('input[name="password"]').val();
+            account.find('.website-value h3').text(website);
+            account.find('.username-value p').text(username);
+            account.find('.password-value p').text(password);
+            account.find('.website-value').show();
+            account.find('.username-value').show();
+            account.find('.password-value').show();
+            form.hide();
+            account.find('.save-btn').hide();
+            account.find('.cancel-btn').hide();
+          });
+
+          $('.cancel-btn').on('click', function () {
+            const account = $(this).closest('.account');
+            account.find('.website-value').show();
+            account.find('.username-value').show();
+            account.find('.password-value').show();
+            account.find('.edit-form').hide();
+            account.find('.save-btn').hide();
+            account.find('.cancel-btn').hide();
+          });
+
         });
-        $('#add-new-account-btn').on('click', () => {
-          window.location.href = '/addNewAccount';
-        });
+      </script>
 
-        $('.copy-btn').on('click', function() {
-      const password = $(this).data('password');
-      const tempInput = $('<input>');
-      $('body').append(tempInput);
-      tempInput.val(password).select();
-      document.execCommand('copy');
-      tempInput.remove();
-    });
-      });
-    </script>
-
-  </main>
+    </main>
 
 </body>
+
 </html>
