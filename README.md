@@ -7,8 +7,13 @@ A storage system for passwords for organizations. An organization, like Lighthou
 If a user needs to log in to a specific website (e.g. Facebook) they can go into the app, find the appropriate password, click a button which copies the password into the clipboard, and log in.
 
 ## Final Product
+#sign in page
 !["screenshot of sign in page"](https://github.com/rebecca-romeo/PasswordKeeper/blob/master/docs/pwk1.png)
+
+
 !["screenshot of viewing all accounts"](https://github.com/rebecca-romeo/PasswordKeeper/blob/master/docs/pwk2.png)
+
+
 !["screenshot of adding a new account"](https://github.com/rebecca-romeo/PasswordKeeper/blob/master/docs/pwk3.png)
 
 
