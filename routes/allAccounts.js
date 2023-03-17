@@ -17,10 +17,16 @@ router.get('/', async (req, res) => {
     const categories = categoriesResult.rows;
     const accountsResult = await pool.query('SELECT * FROM accounts');
     const accounts = accountsResult.rows;
-    res.render('allAccounts', { organizations: organizations, categories: categories, accounts: accounts });
+
+
+    const loggedInUserResult = await pool.query('SELECT * FROM users WHERE email = $1', [req.session.user]);
+    const loggedInUser = loggedInUserResult.rows[0].email;
+
+
+    res.render('allAccounts', { organizations: organizations, categories: categories, accounts: accounts, loggedInUser: loggedInUser } );
   } catch (err) {
     console.log(err.message);
-    res.send('server error');
+    res.send('You must be logged in to view this page. Click <a href="/auth/login"> here</a> to login.');
   }
 });
 
